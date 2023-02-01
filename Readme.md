@@ -17,17 +17,14 @@ generated](./images/media/image1.png)
 
 Where:
 
-N is the number of n-gram instances in the whole corpus.\
+N is the number of n-gram instances in the whole corpus.
 Nr_0 is the number of n-gram types occurring r times in the first part
-of the corpus.\
-Tr_01 is the total number the n-grams of the first part (of Nr_0 )appear
-the second part[\
-]{dir="rtl"} of the corpus (instances).\
+of the corpus.
+Tr_01 is the total number the n-grams of the first part (of Nr_0 )appear the second part of the corpus (instances).
 Nr_1 is the number of n-gram types occurring r times in the second part
-of the corpus.\
+of the corpus.
 Tr_10 is the total number the n-grams of the second part (of Nr_1 )
-appear in the first part[\
-]{dir="rtl"} of the corpus (instance).
+appear in the first part of the corpus (instance).
 
 # Map-Reduce:
 
@@ -35,28 +32,26 @@ appear in the first part[\
 
 Count the occurrences in each corpus for each 3-gram.
 
-input:
-Key: \<lineId\> , Value : \<3-gram\>
+Input:
+`Key: <lineId> , Value : <3-gram>`
 
-output:
-
-Key: \<3-gram\> , Value : \<count in corpus 0 , count in corpus 1\>
-
+Output:
+`Key: <3-gram> , Value : <count in corpus 0 , count in corpus 1>
+`
 ### Second map-reduce:
 
 Calculates the probability for each r.
 
 Input:
-
-Key: \<3-gram\> , Value : \<count in corpus 0 , count in corpus 1\>
-
+`Key: <3-gram> , Value : <count in corpus 0 , count in corpus 1>
+`
 Output:
-
-key: \<3-gram,probability\> , value : \<probability\>
+`key: <3-gram, probability> , value : <probability>
+`
 
 Adding probability to key for map-reduce3 sorting
 
-Mapper:
+#####  Mapper:
 
 Creates 3 new rows from each row in first map-reuce output:
 
@@ -66,14 +61,14 @@ Creates 3 new rows from each row in first map-reuce output:
 
 3\. the total count of the current 3-gram in both corpuses
 
-Combiner:
+##### Combiner:
 
 Combine locally only N_r0,N_r1,Tr_01,Tr10 values.
 
 Probability calculation can occur only by the reducer after we got
 N_r0,N_r1,Tr_01,Tr10 values from all computers.
 
-Reducer:
+##### Reducer:
 
 Key sorting implementation: sort by r value and if r value matched sort
 by Boolean value.
@@ -86,32 +81,27 @@ with N_r0,N_r1,Tr_01,Tr10 final values
 
 ### Third map-reduce:
 
-Used only for the final sorting,
-
-\<w1,w2\> ascending and probability descending with shuffle and sort
+Used only for the final sorting:
+w1,w2 ascending and probability descending with shuffle and sort
 from mapper to reducer
 
 Input:
-
-Key: \<3-gram,probability\> , Value : \<probability\>
-
+`Key:  <3-gram, probability> , Value :  <probability>
+`
 Output:
+`Key:  <3-gram,probability> , Value :  <probability>
+`
 
-Key: \<3-gram,probability\> , Value : \<probability\>
+# Run instructions:
 
-run instructions:
+Create a bucket and upload to it the heb-stopwords.txt included and
+change file type to UTF-8.
 
-create a bucket and upload to it the heb-stopwords.txt included and
-change file type to utf8
+In bucket create empty log folder
 
-in bucket create empty log folder
+In main.java:
+Change bucket name in lines 21,23,27,29,33,35,76 
 
-in main.java:
-
-lines 21,23,27,29,33,35,76 change bucket name
-
-in mapperreducer1.java
-
-line 70 change bucket name
-
-package the code and upload to all parts jar files to bucket
+In mapperreducer1.java:
+Change bucket name in line 70 .
+Package the code and upload to all parts jar files to bucket.
