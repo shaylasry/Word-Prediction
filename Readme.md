@@ -39,6 +39,19 @@ Input:
 Output:
 `Key: <3-gram> , Value : <count in corpus 0 , count in corpus 1>
 `
+
+#####  Mapper:
+
+Gets the 3-gram from each line, generates a new key and increments the corresponding counter to 1 for the selected corpus
+
+
+##### Reducer:
+
+For each key the reducer sums up the counters of each corpus
+
+##### Combiner:
+Same as reducer
+
 ### Second map-reduce:
 
 Calculates the probability for each r.
@@ -83,6 +96,7 @@ with N_r0,N_r1,Tr_01,Tr10 final values
 ### Third map-reduce:
 
 Used only for the final sorting:
+
 w1,w2 ascending and probability descending with shuffle and sort
 from mapper to reducer
 
