@@ -29,7 +29,7 @@ Tr_10 is the total number the n-grams of the second part (of Nr_1 )
 appear in the first part[\
 ]{dir="rtl"} of the corpus (instance).
 
-Map-Reduce:
+# Map-Reduce:
 
 ### First map-reduce:
 
