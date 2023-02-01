@@ -1,34 +1,19 @@
-Introduction
+# Introduction
 
 This project is a knowledge-base for word-prediction
+system, based on Google 3-Gram dataset, using Amazon Elastic Map-Reduce (EMR). The produced knowledge-base indicates the probability of each word trigram found in the corpus.
 
-system, based on Google 3-Gram dataset, using Amazon Elastic Map-Reduce
-
-(EMR). The produced knowledge-base indicates the probability of each
-word trigram
-
-found in the corpus.
-
-Probability Function
+# Probability Function
 
 We used held out method, named deleted estimation.
 
 Held out estimators divide the training data (the corpus) into two
-parts, build initial
+parts, build initial estimates by doing counts on one part, and then use the other pool of held out data to refine those estimates.
 
-estimates by doing counts on one part, and then use the other pool of
-held out data to
-
-refine those estimates.
-
-The deleted estimation method, for instance, uses a form of two-way
-cross validation,
-
-as follows:
+The deleted estimation equation:
 
 ![A picture containing diagram Description automatically
-generated](./images/media/image1.png){width="3.024139326334208in"
-height="0.5754265091863517in"}
+generated](./images/media/image1.png)
 
 Where:
 
@@ -46,19 +31,18 @@ appear in the first part[\
 
 Map-Reduce:
 
-First map-reduce:
+### First map-reduce:
 
 Count the occurrences in each corpus for each 3-gram.
 
 input:
-
 Key: \<lineId\> , Value : \<3-gram\>
 
 output:
 
 Key: \<3-gram\> , Value : \<count in corpus 0 , count in corpus 1\>
 
-Second map-reduce:
+### Second map-reduce:
 
 Calculates the probability for each r.
 
@@ -100,7 +84,7 @@ same r
 Use r and true tag to create each 3-gram with total count r probability
 with N_r0,N_r1,Tr_01,Tr10 final values
 
-Third map-reduce:
+### Third map-reduce:
 
 Used only for the final sorting,
 
