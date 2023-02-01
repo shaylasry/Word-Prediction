@@ -18,13 +18,14 @@ generated](./images/media/image1.png)
 Where:
 
 N is the number of n-gram instances in the whole corpus.
-Nr_0 is the number of n-gram types occurring r times in the first part
-of the corpus.
+
+Nr_0 is the number of n-gram types occurring r times in the first part of the corpus.
+
 Tr_01 is the total number the n-grams of the first part (of Nr_0 )appear the second part of the corpus (instances).
-Nr_1 is the number of n-gram types occurring r times in the second part
-of the corpus.
-Tr_10 is the total number the n-grams of the second part (of Nr_1 )
-appear in the first part of the corpus (instance).
+
+Nr_1 is the number of n-gram types occurring r times in the second part of the corpus.
+
+Tr_10 is the total number the n-grams of the second part (of Nr_1 )appear in the first part of the corpus (instance).
 
 # Map-Reduce:
 
