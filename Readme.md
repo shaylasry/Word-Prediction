@@ -59,6 +59,7 @@ Calculates the probability for each r.
 Input:
 `Key: <3-gram> , Value : <count in corpus 0 , count in corpus 1>
 `
+
 Output:
 `key: <3-gram, probability> , value : <probability>
 `
@@ -103,6 +104,7 @@ from mapper to reducer
 Input:
 `Key:  <3-gram, probability> , Value :  <probability>
 `
+
 Output:
 `Key:  <3-gram,probability> , Value :  <probability>
 `
